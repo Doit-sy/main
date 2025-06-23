@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .section1 {
+      position: relative;
+      background: yellow;
+      height: 100%;
+      margin: 0 auto;
+      max-width: 1000px;
+      width: 100%;
+    }
+    .div1 {
+      position: relative;
+      flex-direction: column;
+      display: flex;
+      background: turquoise;
+      height: 100%;
+      width: 90%;
+      margin: 0 auto;
+    }
+    .box1 {
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      background: wheat;
+      width: 100%;
+      height: 100%;
+    }
+    .box1 h1 {
+      margin-bottom: 2vh;
+      font-size: 4rem;
+    }
+    .box1 h2 {
+      margin-bottom: 1vh;
+      font-size: 2.5rem;
+    }
+    .box1 h3 {
+      background: violet;
+      font-weight: bold;
+      font-size: 2.8vh;
+      margin-bottom: 3vh;
+    }
+    .box1 p {
+      font-size: 2vh;
+      display: flex;
+      width: 55%;
+      background: yellowgreen;
+    }
+    .box1 p span {
+      text-align: right;
+      width: 20%;
+      background: tomato;
+    }
+    .box2 {
+      padding: 3vh 0;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      background: rgb(255, 195, 84);
+      width: 100%;
+      height: 100%;
+    }
+    .box2div {
+      display: flex;
+      position: relative;
+      background: violet;
+      height: 100%;
+      width: 100%;
+    }
+    .box2div > div {
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      height: auto;
+      width: 100%;
+      border: 1px solid black;
+      background: yellowgreen;
+    }
+    .box2div > div > p:first-child {
+      border-radius: 100%;
+      display: flex;
+      width: 23vh;
+      height: 23vh;
+      background: turquoise;
+    }
+    .num {
+      font-weight: bold;
+    }
+    .num span {
+      font-weight: bold;
+      font-size: 2rem;
+    }
+    .box2div > div > div {
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      width: 100%;
+      background: yellow;
+      height: 20vh;
+    }
+  </style>
+  <body>
+    <section class="section1">
+      <div class="div1">
+        <div class="box1">
+          <h2>김포시 평생학습관</h2>
+          <h1>별별프로그램</h1>
+          <h3>
+            평생학습으로 완성하는 <br />행복특별시 김포! 별별프로그램 수강생
+            모집
+          </h3>
+          <p><span>신청기간 :</span>2021.05.10(월)9:00~5.19(수) 17:00</p>
+          <p><span>수강대상 :</span>김포시민</p>
+          <p><span>수강료 :</span>무료 (재료비 별도) 강의계획서 확인 필수</p>
+          <p><span>신청방법 :</span>김포시 평생학습관 홈페이지 선착순 신청</p>
+        </div>
+
+        <div class="box2">
+          <h1>"별걸 다 알려주는 김포형 단기특강"</h1>
+          <div class="box2div">
+            <div>
+              <p></p>
+              <p>
+                여성친화)온라인ZOOM<br />타로테라피스트 3급<br />자격취득과정
+              </p>
+              <p class="num"><span>12</span>명</p>
+              <div>
+                <p>
+                  5.24 ~ 6.30. - 12회차<br />
+                  월, 수 10:30~12:00
+                  <br />타로카드개별구매필수 <br />[2만원_강의계획서확인]
+                </p>
+              </div>
+            </div>
+            <div>
+              <p></p>
+              <p>
+                여성친화)온라인ZOOM<br />타로테라피스트 3급<br />자격취득과정
+              </p>
+              <p class="num"><span>80</span>명</p>
+              <div></div>
+            </div>
+            <div>
+              <p></p>
+              <p>
+                여성친화)온라인ZOOM<br />타로테라피스트 3급<br />자격취득과정
+              </p>
+              <p class="num"><span>12</span>명</p>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

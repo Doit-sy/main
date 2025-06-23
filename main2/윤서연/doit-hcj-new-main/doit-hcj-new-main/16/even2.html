@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      body {
+        font-size: 2em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <h1></h1>
+    <p id="result"></p>
+    <script>
+      // 변수 선언
+      let num1 = prompt("숫자입력");
+      let num2 = prompt("숫자입력");
+      let result;
+      num1 = parseInt(num1);
+      num2 = parseInt(num2);
+
+      // 조건문을 사용한 비교
+      if (num1 > num2) {
+        result = num1;
+      } else {
+        result = num2;
+      }
+
+      document.write(result);
+    </script>
+  </body>
+</html>

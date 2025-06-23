@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .main {
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      display: flex;
+      margin: 0 auto;
+      width: 50vw;
+      background: rgb(255, 238, 208);
+    }
+  </style>
+  <body>
+    <section>
+      <div class="main">
+        <h1>할인 가격 계산기</h1>
+        <p>원래 가격을 입력하고'계산하기'버튼을 누르세요</p>
+        <input type="number" id="priceinput" placeholder="가격을 입력하세요" />
+        <button onclick="calculateDiscont()">계산하기</button>
+        <p><span id="result3"></span></p>
+        <div class="menu">
+          <ul>
+            <li>티셔츠 : 5000$</li>
+            <li>바지 : 6000$</li>
+            <li>치마 : 15000%</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <script>
+      function calculateDiscont() {
+        // 변수 선언
+        // let num1 = prompt("가격을 입력하세요");
+        let price = document.getElementById("priceinput").value;
+        console.log(price);
+        let result;
+        num1 = parseInt(price);
+
+        // 조건문을 사용한 비교
+        if (num1 >= 10000) {
+          result = num1 * 0.9;
+        } else {
+          result = "할인미적용";
+        }
+
+        document.getElementById("result3").innerHTML = result + "입니다";
+      }
+    </script>
+  </body>
+</html>
