@@ -20,21 +20,33 @@ const Input2 = () => {
 
   return (
     <>
-      <label>이름</label>
-      <input type="text" id="name" value={name} onChange={onChange} />
-      <br />
+      <div>
+        <div>
+          <label>이름</label>
+          <input type="text" id="name" value={name} onChange={onChange} />
+        </div>
 
-      <label>이메일</label>
-      <input type="text" id="email" value={email} onChange={onChange} />
-      <br />
+        <div>
+          <label>이메일</label>
+          <input type="text" id="email" value={email} onChange={onChange} />
+        </div>
+        <div>
+          <label>전화번호</label>
+          <input type="text" id="tel" value={tel} onChange={onChange} />
+        </div>
+      </div>
 
-      <label>전화번호</label>
-      <input type="text" id="tel" value={tel} onChange={onChange} />
-      <br />
-
-      <p>이름 : {name}</p>
-      <p>전화번호 : {tel}</p>
-      <p>이메일 : {email}</p>
+      <div id="bottom">
+        <p>
+          <span>이름 :</span> {name}
+        </p>
+        <p>
+          <span>전화번호 :</span> {tel}
+        </p>
+        <p>
+          <span>이메일 :</span> {email}
+        </p>
+      </div>
     </>
   );
 };

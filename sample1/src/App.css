@@ -1,5 +1,68 @@
 .App {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: whitesmoke;
+  position: relative;
+  flex-direction: column;
+  display: flex;
+  padding: 20px 0;
+  margin: 0 auto;
+  max-width: 90vw;
+  background: rgb(187, 187, 187);
   text-align: center;
+}
+a {
+  border-radius: 15px;
+  padding: 10px 15px;
+  background: rgb(27, 27, 27);
+  color: whitesmoke;
+  text-decoration: none;
+}
+.App > div {
+  margin: 20px 0;
+}
+.App > div > div {
+  justify-content: start;
+  display: flex;
+}
+.App > div > div:first-child {
+  padding-top: 30px;
+  border-top: 2px solid black;
+}
+.App > div > div > label {
+  width: 20%;
+  padding: 10px;
+}
+#bottom {
+  border-top: 3px dotted black;
+  flex-direction: column;
+  display: flex;
+}
+#bottom p {
+  margin: 0;
+  align-items: center;
+  display: flex;
+}
+#bottom p:first-child {
+  padding-top: 30px;
+}
+#bottom p span {
+  justify-content: center;
+  width: 20%;
+  padding: 10px;
+  display: flex;
+}
+
+#text:first-child a {
+  border: 3px solid whitesmoke;
+  border-radius: 15px;
+  background: rgb(122, 122, 122);
+  padding: 10px;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: whitesmoke;
+  text-decoration: none;
 }
 
 .App-logo {
@@ -37,8 +100,10 @@
   }
 }
 
-nav * {
-  margin-right: 1em;
+nav {
+  padding: 0 30px;
+  justify-content: space-between;
+  display: flex;
 }
 
 th {

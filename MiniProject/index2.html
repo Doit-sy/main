@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>서연의 프리미엄 투두리스트</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        background: #f5f7fa;
+        margin: 0;
+        padding: 20px;
+      }
+      .container {
+        max-width: 700px;
+        margin: 0 auto;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      h1,
+      h2 {
+        margin-top: 0;
+      }
+      .input-group,
+      .motivation,
+      .repeat-group {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+      }
+      input[type="text"],
+      input[type="date"],
+      select {
+        padding: 10px;
+        flex: 1;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button.add {
+        background: #4caf50;
+        color: white;
+      }
+      button.complete {
+        background: #2196f3;
+        color: white;
+      }
+      button.delete {
+        background: #e74c3c;
+        color: white;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        background: #f1f1f1;
+        margin-bottom: 10px;
+        padding: 15px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      li.completed {
+        text-decoration: line-through;
+        color: #aaa;
+        background: #ddd;
+      }
+      .task-left {
+        display: flex;
+        flex-direction: column;
+      }
+      .meta {
+        font-size: 12px;
+        color: #666;
+      }
+      .fixed-task {
+        background: #e0f7fa;
+      }
+      .motivation-box {
+        width: 100%;
+        padding: 10px;
+        border: 1px dashed #aaa;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>서연의 프리미엄 투두리스트</h1>
+
+      <!-- 🌟 오늘의 다짐 -->
+      <div class="motivation">
+        <input
+          type="text"
+          id="motivationInput"
+          placeholder="오늘의 다짐 한 줄 적기"
+        />
+        <button onclick="saveMotivation()">저장</button>
+      </div>
+      <div class="motivation-box" id="motivationText"></div>
+
+      <!-- 📅 할 일 추가 -->
+      <div class="input-group">
+        <input type="text" id="taskInput" placeholder="할 일 입력" />
+        <input type="date" id="dueDate" />
+        <select id="priority">
+          <option value="1">★</option>
+          <option value="2">★★</option>
+          <option value="3">★★★</option>
+        </select>
+        <button class="add" onclick="addTask()">추가</button>
+      </div>
+
+      <!-- 🔁 반복 일정 추가 -->
+      <h2>🔁 반복 일정</h2>
+      <div class="repeat-group">
+        <input type="text" id="repeatInput" placeholder="반복할 일 입력" />
+        <button onclick="addRepeatTask()">반복추가</button>
+      </div>
+      <ul id="dailyTasks"></ul>
+
+      <!-- 📋 오늘의 할 일 -->
+      <h2>📋 오늘의 할 일</h2>
+      <ul id="taskList"></ul>
+    </div>
+
+    <script>
+      const today = new Date().toISOString().slice(0, 10);
+      let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+      let repeatTasks = JSON.parse(localStorage.getItem("repeatTasks")) || [];
+      let lastOpened = localStorage.getItem("lastOpened");
+
+      // 날짜가 바뀌었으면 할 일 날짜 갱신
+      if (lastOpened !== today) {
+        tasks = tasks.map((t) => ({ ...t, date: today }));
+        localStorage.setItem("lastOpened", today);
+      }
+
+      function renderTasks() {
+        const list = document.getElementById("taskList");
+        list.innerHTML = "";
+        tasks.forEach((task, i) => {
+          const li = document.createElement("li");
+          li.className = task.completed ? "completed" : "";
+          const stars = "★".repeat(task.priority);
+          li.innerHTML = `
+          <div class="task-left">
+            <strong>${task.text}</strong>
+            <div class="meta">${task.due || "마감일 없음"} | ${stars}</div>
+          </div>
+          <div>
+            <button class="complete" onclick="toggleComplete(${i})">완료</button>
+            <button class="delete" onclick="deleteTask(${i})">삭제</button>
+          </div>
+        `;
+          list.appendChild(li);
+        });
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      }
+
+      function addTask() {
+        const text = document.getElementById("taskInput").value.trim();
+        const due = document.getElementById("dueDate").value;
+        const priority = Number(document.getElementById("priority").value);
+        if (!text) return;
+        tasks.push({ text, due, completed: false, priority, date: today });
+        document.getElementById("taskInput").value = "";
+        document.getElementById("dueDate").value = "";
+        renderTasks();
+      }
+
+      function toggleComplete(i) {
+        tasks[i].completed = !tasks[i].completed;
+        renderTasks();
+      }
+
+      function deleteTask(i) {
+        if (confirm("정말 삭제할까요?")) {
+          tasks.splice(i, 1);
+          renderTasks();
+        }
+      }
+
+      function renderRepeatTasks() {
+        const ul = document.getElementById("dailyTasks");
+        ul.innerHTML = "";
+        repeatTasks.forEach((task, i) => {
+          const li = document.createElement("li");
+          li.className = "fixed-task";
+          li.innerHTML = `
+          <div class="task-left"><strong>${task}</strong><div class="meta">매일 반복</div></div>
+          <div><button class="delete" onclick="deleteRepeatTask(${i})">삭제</button></div>
+        `;
+          ul.appendChild(li);
+        });
+        localStorage.setItem("repeatTasks", JSON.stringify(repeatTasks));
+      }
+
+      function addRepeatTask() {
+        const input = document.getElementById("repeatInput");
+        const value = input.value.trim();
+        if (!value) return;
+        repeatTasks.push(value);
+        input.value = "";
+        renderRepeatTasks();
+      }
+
+      function deleteRepeatTask(i) {
+        if (confirm("삭제할까요?")) {
+          repeatTasks.splice(i, 1);
+          renderRepeatTasks();
+        }
+      }
+
+      function saveMotivation() {
+        const text = document.getElementById("motivationInput").value.trim();
+        if (text) {
+          localStorage.setItem("motivation", text);
+          document.getElementById("motivationText").innerText = text;
+          document.getElementById("motivationInput").value = "";
+        }
+      }
+
+      function loadMotivation() {
+        const m = localStorage.getItem("motivation");
+        if (m) document.getElementById("motivationText").innerText = m;
+      }
+
+      // 초기 렌더링
+      renderTasks();
+      renderRepeatTasks();
+      loadMotivation();
+    </script>
+  </body>
+</html>
