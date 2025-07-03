@@ -1,0 +1,8 @@
+- Intellij IDEA
+- HeidiSQL
+- Python
+- MySQL Workbench
+- 명령 프롬프트 사용법
+- IDLE Shell
+- Mysql
+- 
