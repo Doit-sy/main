@@ -6,43 +6,86 @@
     <title>Document</title>
   </head>
   <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    .main {
+      padding-top: 10vh;
+      position: relative;
+      height: 100vh;
+      width: 100%;
+    }
     .container {
+      align-items: center;
+      overflow: hidden;
+      border-radius: 2rem;
+      margin-top: 10vh;
       max-width: 700px;
       margin: 0 auto;
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
+      position: relative;
+      height: 50vh;
+      display: flex;
+      flex-direction: column;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
+    .bg {
+      z-index: -1;
+      overflow: hidden;
+      background: yellow;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+    .bg img {
+      object-fit: contain;
+      object-position: bottom;
+      width: 100%;
+    }
     .motivation {
+      align-items: center;
+      width: 100%;
+      height: 100%;
       display: flex;
-      gap: 10px;
-      margin-bottom: 15px;
-      flex-wrap: wrap;
+      flex-direction: column;
     }
   </style>
   <body>
-    <div class="container">
-      <h1>오늘의 할일</h1>
-      <div class="motivation">
-        <input
-          type="text"
-          id="motivationInput"
-          placeholder="오늘의 다짐한줄적기"
-        />
-        <button onclick="saveMotivation()">저장</button>
-        <div class="motivation-box" id="motivationText"></div>
-        <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+    <div class="main">
+      <div class="container">
+        <p class="bg"><img src="./img/bg.jpg" alt="" /></p>
 
-        <div class="input-group">
-          <input type="text" id="taskInput" placeholder="할 일 입력" />
-          <input type="date" id="dueDate" />
-          <select id="priority">
-            <option value="1">★</option>
-            <option value="2">★★</option>
-            <option value="3">★★★</option>
-          </select>
-          <button class="add" onclick="addTask()">추가</button>
+        <h1>오늘의 할일</h1>
+        <div class="motivation">
+          <input
+            type="text"
+            id="motivationInput"
+            placeholder="오늘의 다짐한줄적기"
+          />
+          <button onclick="saveMotivation()">저장</button>
+          <div class="motivation-box" id="motivationText"></div>
+          <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+
+          <div class="input-group">
+            <input type="text" id="taskInput" placeholder="할 일 입력" />
+            <input type="date" id="dueDate" />
+            <select id="priority">
+              <option value="1">★</option>
+              <option value="2">★★</option>
+              <option value="3">★★★</option>
+            </select>
+            <button class="add" onclick="addTask()">추가</button>
+          </div>
+
+          <h2>반복일정</h2>
+          <div class="repeat-group">
+            <input type="text" id="repeatInput" placeholder="반복할 일 입력" />
+            <button onclick="addRepeatTask()">반복추가</button>
+          </div>
+          <ul id="dailyTasks"></ul>
+
+          <h2>오늘의 할 일</h2>
+          <ul id="taskLuist"></ul>
         </div>
       </div>
     </div>
