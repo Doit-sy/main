@@ -1,0 +1,11 @@
+BEGIN
+  INSERT INTO book_log (bookid, bookname, publisher, price)
+  VALUES (NEW.bookid, NEW.bookname, NEW.publisher, NEW.price);
+END 
+
+
+트리거에서 book_log 를 계속 찾고있어서
+뭘 적어도 book_log 에서 불러오도록 설정.
+때문에 book_log를 지웠을 때 book_log가 없다고 경고창이 뜬 것.
+*이번 오류는 잘못된 트리거 설정으로 인한 오류*
+불러오는 이름과 오류에 뜨는 이름이 다를 경우 트리거 설정 먼저 확인할것......
